@@ -55,18 +55,18 @@ public class DonorService {
             optionalHelper.isEntityAlreadyExists(donorRepository.findByCpf(donorDTO.getCpf()));
         }
 
-        donorRepository.save(donorHelper.donorUpdateSetter(donor, donorDTO));
+        save(donorHelper.donorUpdateSetter(donor, donorDTO));
     }
 
     @Transactional
     public void patchDonorById(Integer id, DonorDTO donorDTO) {
         Donor donor = optionalHelper.verifyOptionalEntity(donorRepository.findById(id));
 
-        if(!donorDTO.getCpf().equals(donor.getCpf())) {
+        if(donor.getCpf() != null && !donorDTO.getCpf().equals(donor.getCpf())) {
             optionalHelper.isEntityAlreadyExists(donorRepository.findByCpf(donorDTO.getCpf()));
         }
 
-        donorRepository.save(donorHelper.donorPatchUpdateSetter(donor, donorDTO));
+        save(donorHelper.donorPatchUpdateSetter(donor, donorDTO));
     }
 
     @Transactional
@@ -74,5 +74,9 @@ public class DonorService {
         Donor donor  = optionalHelper.verifyOptionalEntity(donorRepository.findById(id));
 
         delete(donor);
+    }
+
+    public Donor getById(Integer idDonor) {
+        return optionalHelper.verifyOptionalEntity(donorRepository.findById(idDonor));
     }
 }

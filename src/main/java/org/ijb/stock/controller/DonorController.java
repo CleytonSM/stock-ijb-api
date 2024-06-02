@@ -1,6 +1,5 @@
 package org.ijb.stock.controller;
 
-import org.ijb.stock.model.Donor;
 import org.ijb.stock.model.dto.DonorDTO;
 import org.ijb.stock.service.DonorService;
 import org.springframework.beans.factory.annotation.Autowired;
