@@ -1,6 +1,7 @@
 package org.ijb.stock.service;
 
 import org.ijb.stock.helper.OptionalHelper;
+import org.ijb.stock.helper.UserHelper;
 import org.ijb.stock.model.User;
 import org.ijb.stock.model.dto.UserDTO;
 import org.ijb.stock.repository.UserRepository;
@@ -15,6 +16,8 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private OptionalHelper optionalHelper;
+    @Autowired
+    private UserHelper userHelper;
 
     private void save(User user){ userRepository.save(user);}
 
@@ -26,5 +29,13 @@ public class UserService {
 
         save(user);
     }
+
+    public User findUserById(Integer id) {
+        User user = optionalHelper.verifyOptionalEntity(userRepository.findById(id));
+
+        return userHelper.userToDTO(user);
+    }
+
+
 
 }
