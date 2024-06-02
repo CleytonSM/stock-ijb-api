@@ -62,7 +62,7 @@ public class DonorService {
     public void patchDonorById(Integer id, DonorDTO donorDTO) {
         Donor donor = optionalHelper.verifyOptionalEntity(donorRepository.findById(id));
 
-        if(!donorDTO.getCpf().equals(donor.getCpf())) {
+        if(donor.getCpf() != null && !donorDTO.getCpf().equals(donor.getCpf())) {
             optionalHelper.isEntityAlreadyExists(donorRepository.findByCpf(donorDTO.getCpf()));
         }
 
