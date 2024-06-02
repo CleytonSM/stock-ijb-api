@@ -1,5 +1,6 @@
 package org.ijb.stock.controller;
 
+import org.ijb.stock.model.dto.DonorDTO;
 import org.ijb.stock.model.dto.UserDTO;
 import org.ijb.stock.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/find/id/")
+    @GetMapping("/find/")
     public ResponseEntity<UserDTO> findUserById(@RequestParam Integer id){
         return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
     }
@@ -30,5 +31,27 @@ public class UserController {
     @GetMapping("/find/all")
     public ResponseEntity<List<UserDTO>> findAllUsers() {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+    }
+
+
+    @PutMapping("/update/")
+    public ResponseEntity<HttpStatus> updateUserById(@RequestParam Integer id, @RequestBody UserDTO userDTO) {
+        userService.updateUserById(id, userDTO);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PatchMapping("/patch/")
+    public ResponseEntity<HttpStatus> patchUserById(@RequestParam Integer id, @RequestBody UserDTO userDTO) {
+        userService.patchUserById(id, userDTO);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/")
+    public ResponseEntity<HttpStatus> deleteUserById(@RequestParam Integer id) {
+        userService.deleteUserById(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

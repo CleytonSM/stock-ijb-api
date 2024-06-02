@@ -1,7 +1,6 @@
 package org.ijb.stock.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 
 @Entity
@@ -9,19 +8,18 @@ import lombok.Data;
 @Data
 public class User {
     @Id
-    @GeneratedValue(generator = "native", strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "email")
     private String email;
     @Column(name = "senha")
-    private String senha;
+    private String password;
 
     public User() {
     }
 
-    public User(String email, String senha) {
-        this.id = id;
+    public User(String email, String password) {
         this.email = email;
-        this.senha = senha;
+        this.password = password;
     }
 }
