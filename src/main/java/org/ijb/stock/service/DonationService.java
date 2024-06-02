@@ -64,6 +64,6 @@ public class DonationService {
     public void deleteDonation(Integer id) {
         Donation donation = optionalHelper.verifyOptionalEntity(donationRepository.findById(id));
 
-        donationRepository.delete(donation);
+        delete(donation);
     }
 }
