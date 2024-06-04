@@ -2,7 +2,6 @@ package org.ijb.stock.controller;
 
 import org.ijb.stock.model.dto.DonationDTO;
 import org.ijb.stock.service.DonationService;
-import org.ijb.stock.service.DonorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,21 +43,21 @@ public class DonationController {
 
     @PutMapping("/update/")
     public ResponseEntity<HttpStatus> updateDonationById(@RequestParam Integer id, @RequestBody DonationDTO donationDTO) {
-        donationService.updateDonation(id, donationDTO);
+        donationService.updateDonationById(id, donationDTO);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PatchMapping("/patch/")
     public ResponseEntity<HttpStatus> patchDonationById(@RequestParam Integer id, @RequestBody DonationDTO donationDTO) {
-        donationService.patchDonation(id, donationDTO);
+        donationService.patchDonationById(id, donationDTO);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/")
     public ResponseEntity<HttpStatus> deleteDonationById(@RequestParam Integer id) {
-        donationService.deleteDonation(id);
+        donationService.deleteDonationById(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

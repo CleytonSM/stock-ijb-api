@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -25,6 +26,8 @@ public class Donation {
     private String description;
     @Column(name = "qt_doacao")
     private Long quantity;
+    @OneToOne(mappedBy = "donation")
+    private OutletProduct outletProduct;
 
     public Donation() {
     }

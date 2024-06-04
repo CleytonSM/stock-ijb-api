@@ -47,23 +47,27 @@ public class DonationService {
     }
 
     @Transactional
-    public void updateDonation(Integer id, DonationDTO donationDTO) {
+    public void updateDonationById(Integer id, DonationDTO donationDTO) {
         Donation donation = optionalHelper.verifyOptionalEntity(donationRepository.findById(id));
 
         save(donationHelper.donationUpdateSetter(donation, donationDTO));
     }
 
     @Transactional
-    public void patchDonation(Integer id, DonationDTO donationDTO) {
+    public void patchDonationById(Integer id, DonationDTO donationDTO) {
         Donation donation = optionalHelper.verifyOptionalEntity(donationRepository.findById(id));
 
         save(donationHelper.donationPatchUpdateSetter(donation, donationDTO));
     }
 
     @Transactional
-    public void deleteDonation(Integer id) {
+    public void deleteDonationById(Integer id) {
         Donation donation = optionalHelper.verifyOptionalEntity(donationRepository.findById(id));
 
         delete(donation);
+    }
+
+    public Donation getById(Integer idDonation) {
+        return optionalHelper.verifyOptionalEntity(donationRepository.findById(idDonation));
     }
 }
