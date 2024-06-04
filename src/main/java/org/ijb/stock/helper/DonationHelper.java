@@ -20,7 +20,7 @@ public class DonationHelper {
     }
 
     public DonationDTO donationToDTO(Donation donation) {
-        return new DonationDTO(donation.getId(), donation.getId(), donation.getDescription(), donation.getQuantity());
+        return new DonationDTO(donation.getId(), donation.getDonor().getId(), donation.getDescription(), donation.getQuantity());
     }
 
     public List<DonationDTO> donationsToDTO(List<Donation> donations) {

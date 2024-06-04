@@ -2,9 +2,7 @@ package org.ijb.stock.service;
 
 import org.ijb.stock.helper.OptionalHelper;
 import org.ijb.stock.helper.UserHelper;
-import org.ijb.stock.model.Donor;
 import org.ijb.stock.model.User;
-import org.ijb.stock.model.dto.DonorDTO;
 import org.ijb.stock.model.dto.UserDTO;
 import org.ijb.stock.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +28,7 @@ public class UserService {
 
     @Transactional
     public void createUser(UserDTO userDTO){
-        optionalHelper.isEntityAlreadyExists(userRepository.findByEmail(userDTO.getEmail()));
+        optionalHelper.entityAlreadyExists(userRepository.findByEmail(userDTO.getEmail()));
 
         save(userHelper.dtoToUser(userDTO));
     }
@@ -50,7 +48,7 @@ public class UserService {
         User user = optionalHelper.verifyOptionalEntity(userRepository.findById(id));
 
         if(!userDTO.getEmail().equals(user.getEmail())) {
-            optionalHelper.isEntityAlreadyExists(userRepository.findByEmail(userDTO.getEmail()));
+            optionalHelper.entityAlreadyExists(userRepository.findByEmail(userDTO.getEmail()));
         }
 
         userRepository.save(userHelper.userUpdateSetter(user, userDTO));
@@ -61,7 +59,7 @@ public class UserService {
         User user = optionalHelper.verifyOptionalEntity(userRepository.findById(id));
 
         if(userDTO.getEmail() != null && !userDTO.getEmail().equals(user.getEmail()) ) {
-            optionalHelper.isEntityAlreadyExists(userRepository.findByEmail(userDTO.getEmail()));
+            optionalHelper.entityAlreadyExists(userRepository.findByEmail(userDTO.getEmail()));
         }
 
         userRepository.save(userHelper.userPatchUpdateSetter(user, userDTO));

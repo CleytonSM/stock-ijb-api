@@ -32,7 +32,7 @@ public class DonorService {
 
     @Transactional
     public void createDonor(DonorDTO donorDTO) {
-        optionalHelper.isEntityAlreadyExists(donorRepository.findByCpf(donorDTO.getCpf()));
+        optionalHelper.entityAlreadyExists(donorRepository.findByCpf(donorDTO.getCpf()));
 
         save(donorHelper.dtoToDonor(donorDTO));
     }
@@ -52,7 +52,7 @@ public class DonorService {
         Donor donor = optionalHelper.verifyOptionalEntity(donorRepository.findById(id));
 
         if(!donorDTO.getCpf().equals(donor.getCpf())) {
-            optionalHelper.isEntityAlreadyExists(donorRepository.findByCpf(donorDTO.getCpf()));
+            optionalHelper.entityAlreadyExists(donorRepository.findByCpf(donorDTO.getCpf()));
         }
 
         save(donorHelper.donorUpdateSetter(donor, donorDTO));
@@ -63,7 +63,7 @@ public class DonorService {
         Donor donor = optionalHelper.verifyOptionalEntity(donorRepository.findById(id));
 
         if(donor.getCpf() != null && !donorDTO.getCpf().equals(donor.getCpf())) {
-            optionalHelper.isEntityAlreadyExists(donorRepository.findByCpf(donorDTO.getCpf()));
+            optionalHelper.entityAlreadyExists(donorRepository.findByCpf(donorDTO.getCpf()));
         }
 
         save(donorHelper.donorPatchUpdateSetter(donor, donorDTO));
