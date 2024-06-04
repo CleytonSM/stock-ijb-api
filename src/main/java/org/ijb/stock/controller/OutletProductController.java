@@ -41,7 +41,7 @@ public class OutletProductController {
         return new ResponseEntity<>(outletProductService.findAll(), HttpStatus.OK);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/")
     public ResponseEntity<HttpStatus> updateOutletProductById(@RequestParam Integer id, @RequestBody OutletProductDTO outletProductDTO) {
         outletProductService.updateOutletProductById(id, outletProductDTO);
 

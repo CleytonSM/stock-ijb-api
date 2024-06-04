@@ -1,6 +1,6 @@
 CREATE TABLE tb_produto_outlet (
                            id INT AUTO_INCREMENT,
-                           id_doacao INT,
+                           id_doacao INT UNIQUE,
                            nm_produto_outlet VARCHAR(60),
                            ds_produto_outlet VARCHAR(100),
                            CONSTRAINT pk_tb_produto_outlet_id PRIMARY KEY (id),
